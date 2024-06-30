@@ -1,13 +1,20 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
+import { DetailsPage } from './home/details/details.page';
+
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
+ 
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    component: HomePage,
+    pathMatch: "full"
   },
+  {
+    path: 'details/:id', // Define a route with a parameter :id
+    component: DetailsPage
+  }
 ];
+
+
+

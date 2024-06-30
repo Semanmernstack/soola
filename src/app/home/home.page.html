@@ -1,20 +1,53 @@
-<ion-header [translucent]="true">
+<ion-header color="red" >
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title slot="">
+      Semans Blog
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+    debounce="800"
+    #searchInput
+    mode="ios"
+    class="'ion-searchbar"
+    placeholder="search"
+  >
+  
+  </ion-searchbar>
+   
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ 
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content >
+  <ion-row>
+
+    @for(item of newsItems; track item.id) { 
+      <ion-col >
+        <ion-card>
+          <ion-thumbnail>
+            <ion-img>
+              [src] = "item?.image"
+            </ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <ion-text color="red">{{item?.title}}</ion-text>
+            <p>
+              <ion-text>
+                <strong>{{item?.category}}</strong>
+              </ion-text>
+            </p>
+          </ion-label>
+        </ion-card>
+      </ion-col>
+    }
+    
+    <ion-text>hh</ion-text>
+  
+    
+
+  </ion-row>
+ 
+  
 </ion-content>
