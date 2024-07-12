@@ -1,16 +1,31 @@
-export interface NewsItem {
+
+
+//export interface Metadata {
+    //createdAt: string;
+    //id: string;
+    //private: boolean;
+    //data: any; 
+    //record: any;
+   // data: NewsItem[];
+ // }
+ export interface NewsItem {
     id: string;
     title: string;
     description: string;
     image: string;
-    category: 'news' | 'sport' | 'entertainment';
-
-}
-
-export interface Metadata {
-    createdAt: string;
+    category: string;
+  }
+  
+  
+  
+  
+  export interface Metadata {
     id: string;
     private: boolean;
-    data: any; // Allow any additional data
+    createdAt: string;
     record: any;
+    data: NewsItem[];
   }
+  
+  
+  

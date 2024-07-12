@@ -1,9 +1,13 @@
 {
-    "/api": {
-      "target": "https://api.jsonbin.io",
-      "secure": true,
-      "changeOrigin": true,
-      "logLevel": "debug"
+  "/api": {
+    "target": "https://api.jsonbin.io/v3",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
     }
   }
+}
+
+    
   

@@ -21,14 +21,18 @@
  
 
 <ion-content >
+  <ion-item [routerLink] = "['/add-form-page']">
+    Add Blog
+  </ion-item>
+  
   <ion-row>
 
-    @for(item of newsItems; track item.id) { 
+    @for(item of newsItem; track item.id) { 
       <ion-col >
-        <ion-card>
+        <ion-card  [routerLink] = "['/details-page',  item?.id ]"     >
           <ion-thumbnail>
-            <ion-img>
-              [src] = "item?.image"
+            <ion-img [src] = "item?.image">
+              
             </ion-img>
           </ion-thumbnail>
           <ion-label>
@@ -39,15 +43,19 @@
               </ion-text>
             </p>
           </ion-label>
+         >
         </ion-card>
+       
       </ion-col>
     }
     
-    <ion-text>hh</ion-text>
+   
   
     
 
   </ion-row>
+  <ion-text>hh</ion-text>
+  
  
   
 </ion-content>

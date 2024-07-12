@@ -1,36 +1,40 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Metadata, NewsItem } from 'src/record';
+import { Observable, throwError } from 'rxjs';
+import {Metadata,  NewsItem } from 'src/record';
+import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class JsonService {
-  private apiUrl = 'https://api.jsonbin.io/v3/b/66811e3bacd3cb34a85f50a8/latest'; // Replace with your JSONBin API endpoint
+  private apiUrl = 'https://api.jsonbin.io/v3/b/6690e747ad19ca34f886771e';
   private apiKey = '$2a$10$ej6tihPN8FYiAQmkJjmlpO5ZW0MBk5SI7EPO3R5XhI/ko/x.yF1Qe';
-  private httpOptions = {
-    headers: new HttpHeaders({
+  
+  private headers= new HttpHeaders({
       'Content-Type': 'application/json',
-      'secret-key': '$2a$10$ej6tihPN8FYiAQmkJjmlpO5ZW0MBk5SI7EPO3R5XhI/ko/x.yF1Qe'// Replace with your JSONBin secret key
+      'X-Master-Key': this.apiKey
+    
     })
-  };
+  
   
   constructor(private http: HttpClient) {}
   
   getNews(): Observable<Metadata> {
-    return this.http.get<Metadata>(`${this.apiUrl}`, this.httpOptions);
+    return this.http.get<Metadata>(this.apiUrl + '/latest' , {headers: this.headers}  );
   }
  
 
   // Create a new news item
-  createNews(newsItem: NewsItem): Observable<NewsItem> {
-    return this.http.post<NewsItem>(`${this.apiUrl}`, this.httpOptions);
+  createNews(newsItem: NewsItem): Observable<any> {
+    return this.http.put(this.apiUrl, newsItem, {headers: this.headers} ) 
+    
   }
 
   // Update an existing news item
   updateNews(newsItem: NewsItem): Observable<NewsItem> {
-    return this.http.put<NewsItem>(`${this.apiUrl}/${newsItem.id}`, this.httpOptions);
+    return this.http.put<NewsItem>(`${this.apiUrl}/${newsItem.id}`, {headers: this.headers} );
   }
 
   // Delete a news item

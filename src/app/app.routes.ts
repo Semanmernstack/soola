@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { DetailsPage } from './home/details/details.page';
+import { AddFormComponent } from './add-form/add-form.component';
 
 
 export const routes: Routes = [
@@ -11,9 +12,14 @@ export const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: 'details/:id', // Define a route with a parameter :id
+    path: 'details-page/:id', 
     component: DetailsPage
+  },
+  {
+    path: 'add-form-page',
+    component: AddFormComponent
   }
+  
 ];
 
 
